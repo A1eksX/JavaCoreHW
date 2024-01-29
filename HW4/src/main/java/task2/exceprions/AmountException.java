@@ -1,7 +1,5 @@
 package task2.exceprions;
 
-import task2.Order;
-
 public class AmountException extends Exception {
     private String customer;
     private String product;

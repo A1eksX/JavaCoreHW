@@ -5,7 +5,6 @@ import task2.exceprions.AmountException;
 import task2.exceprions.CustomerException;
 import task2.exceprions.ProductException;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 @Data
@@ -60,5 +59,4 @@ public class OnlineShop {
         }
         return new Order(currentCustomer, currentProduct, currentQuantity);
     }
-
 }
