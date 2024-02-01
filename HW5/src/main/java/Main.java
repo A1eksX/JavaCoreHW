@@ -48,7 +48,7 @@ public class Main {
                     result = 0;
                     count = 0;
                 }
-                result += arr[i] << (count);    // {0, 2, 1, 3, 2, 1, 3, 0, 1}
+                result += arr[i] << (count * 2);    // {0, 2, 1, 3, 2, 1, 3, 0, 1}
                 count++;
             }
             writer.writeByte(result);
@@ -66,4 +66,36 @@ public class Main {
         System.out.println(Arrays.toString(name.stream().map(x -> "##_" + x).toArray()));
 //        System.out.println(name.stream().map(x -> "##_" + x).collect(Collectors.toList()));
     }
+
+
+    public static void saveArrayToFile(int[] arr, String fileName) {
+        try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(fileName))) {
+            int counter = 0;
+            byte capacitor = 0;
+            for (int element : arr) {
+                if (counter == 3) { // 1 2 3     1 2 3   1 2 3
+                    dataOutputStream.writeByte(capacitor);
+                    capacitor = 0;
+                    counter = 0;
+                }
+                capacitor += element << (counter * 2);
+                counter++;
+            }
+            dataOutputStream.writeByte(capacitor);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
